@@ -1,0 +1,12 @@
+<resources>
+    <string name="Registrateaquí">Registrate aquí</string>
+    <string name="LOGIN">LOGIN</string>
+    <string name="app_name">Catálogos</string>
+    <string name="catalog_icon">Catalog Icon</string>
+
+
+    <string name="bebidas">Bebidas</string>
+    <string name="alimentos">Alimentos</string>
+    <string name="botanas">Botanas</string>
+    <string name="entradas">Entradas</string>
+</resources>

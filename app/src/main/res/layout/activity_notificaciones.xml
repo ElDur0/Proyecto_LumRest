@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Ícono menú -->
+    <ImageView
+        android:id="@+id/ivMenu"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_menu"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Menú" />
+
+    <!-- Ícono perfil -->
+    <ImageView
+        android:id="@+id/ivPerfil"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_profile"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Perfil" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Notificaciones"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/ivPerfil" />
+
+    <!-- Lista de notificaciones -->
+    <LinearLayout
+        android:id="@+id/layoutNotificaciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivPerfil"
+        android:layout_marginTop="40dp"
+        android:orientation="vertical">
+
+        <!-- Notificación 1 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_border"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ayuda mesa 2"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_go"
+                android:contentDescription="Ver más" />
+        </LinearLayout>
+
+        <!-- Notificación 2 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_border"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pedido mesa 1 Listo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_go"
+                android:contentDescription="Ver más" />
+        </LinearLayout>
+
+        <!-- Notificación 3 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/rounded_border"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Ayuda mesa 3"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_go"
+                android:contentDescription="Ver más" />
+        </LinearLayout>
+
+        <!-- Notificación 4 -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:background="@drawable/rounded_border"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Pedido Mesa 4"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <ImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_go"
+                android:contentDescription="Ver más" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Encabezado -->
+    <ImageView
+        android:id="@+id/ivBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_back"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:contentDescription="Volver" />
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedidos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/ivBack" />
+
+    <ImageView
+        android:id="@+id/ivPerfil"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_profile"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@id/ivBack"
+        android:contentDescription="Perfil" />
+
+    <!-- Tarjeta de pedido -->
+    <LinearLayout
+        android:id="@+id/pedidoCard"
+        android:layout_below="@id/ivBack"
+        android:layout_marginTop="32dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/rounded_background"
+        android:padding="12dp"
+        android:elevation="4dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tvPlatillo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bonless habanero"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:id="@+id/ivIconoPlatillo"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_spicy"
+                android:layout_alignParentEnd="true"
+                android:contentDescription="Icono" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvDescripcion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sin aderezo"
+            android:textSize="14sp"
+            android:layout_marginTop="4dp" />
+
+        <!-- Botones -->
+        <LinearLayout
+            android:layout_width="335dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPreparar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@android:color/darker_gray"
+                android:text="Preparar"
+                android:textColor="@android:color/white" />
+
+            <ImageView
+                android:id="@+id/btnCheck"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Aceptar"
+                android:src="@drawable/ic_check" />
+
+            <ImageView
+                android:id="@+id/btnEliminar"
+                android:layout_width="35dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="8dp"
+                android:contentDescription="Eliminar"
+                android:src="@drawable/ic_close" />
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Flecha regresar -->
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back"
+            android:layout_alignParentStart="true"
+            android:contentDescription="Volver" />
+
+        <!-- Título -->
+        <TextView
+            android:id="@+id/tvTitulo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pedido"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignTop="@id/ivBack" />
+
+        <!-- Lista de productos -->
+        <LinearLayout
+            android:id="@+id/layoutProductos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivBack"
+            android:layout_marginTop="40dp"
+            android:orientation="vertical">
+
+            <!-- Producto -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Orden boneless 12 pzs"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="-"
+                    android:textStyle="bold"
+                    android:backgroundTint="#DDDDDD" />
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="+"
+                    android:textStyle="bold"
+                    android:backgroundTint="#DDDDDD" />
+            </LinearLayout>
+
+            <!-- Producto 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Coca cola 12 600 ml"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="-"
+                    android:backgroundTint="#DDDDDD" />
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="+"
+                    android:backgroundTint="#DDDDDD" />
+            </LinearLayout>
+
+            <!-- Producto 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Ensalada César"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="-"
+                    android:backgroundTint="#DDDDDD" />
+
+                <TextView
+                    android:layout_width="32dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="1"
+                    android:textSize="16sp" />
+
+                <Button
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="+"
+                    android:backgroundTint="#DDDDDD" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Notas -->
+        <TextView
+            android:id="@+id/tvNotasLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Notas"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_below="@id/layoutProductos"
+            android:layout_marginTop="16dp" />
+
+        <EditText
+            android:id="@+id/etNotas"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_below="@id/tvNotasLabel"
+            android:layout_marginTop="8dp"
+            android:hint="Agrega notas para tu comida, por ejemplo si cebolla."
+            android:background="@drawable/rounded_border"
+            android:gravity="top"
+            android:padding="12dp"
+            android:inputType="textMultiLine" />
+
+        <!-- Botones Pagar / Cancelar -->
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/etNotas"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/btnPagar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pagar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginEnd="16dp" />
+
+            <Button
+                android:id="@+id/btnCancelar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cancelar"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:backgroundTint="#D32F2F" />
+        </LinearLayout>
+
+        <!-- Botón llamar mesero -->
+        <Button
+            android:id="@+id/btnLlamarMesero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Llamar Mesero"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:backgroundTint="#D32F2F"
+            android:layout_below="@id/layoutBotones"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp" />
+    </RelativeLayout>
+</ScrollView>
