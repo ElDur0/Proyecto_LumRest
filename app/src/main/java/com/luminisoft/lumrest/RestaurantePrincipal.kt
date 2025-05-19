@@ -26,7 +26,7 @@ class RestaurantePrincipal : AppCompatActivity() {
 
         btnPedidos.setOnClickListener   { startActivity(Intent(this,Pedidos::class.java))   }
         btnCatalogos.setOnClickListener { startActivity(Intent(this,Catalogos::class.java)) }
-        btnEmpleados.setOnClickListener { startActivity(Intent(this,Empleados::class.java)) }
+        btnEmpleados.setOnClickListener { startActivity(Intent(this,EmpleadosActivity::class.java)) }
         btnCuentas.setOnClickListener   { startActivity(Intent(this,Cuentas::class.java))   }
         btnMesas.setOnClickListener     { startActivity(Intent(this,Mesas::class.java))     }
 
