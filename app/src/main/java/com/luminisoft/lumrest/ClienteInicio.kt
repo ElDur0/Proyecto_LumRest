@@ -14,7 +14,7 @@ class ClienteInicio : AppCompatActivity() {
     private lateinit var btnMenuEntradas:  Button
     private lateinit var btnMenuBotanas:   Button
     private lateinit var btnLlamarMesero:  Button
-    private lateinit var btnCarrito:       Button
+    //private lateinit var btnCarrito:       Button
 
     //@SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,13 +27,13 @@ class ClienteInicio : AppCompatActivity() {
         btnMenuBotanas   = findViewById(R.id.btnMenuBotanas)
         btnLlamarMesero  = findViewById(R.id.btnLlamarMesero)
 
-        btnCarrito       = findViewById(R.id.ivCarrito)
+       // btnCarrito       = findViewById(R.id.ivCarrito)
 
         btnMenuAlimentos.setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
         btnMenuBebidas  .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
         btnMenuEntradas .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
         btnMenuBotanas  .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
         btnLlamarMesero .setOnClickListener { Toast.makeText(this, "En un momento un mesero lo atenderá",Toast.LENGTH_SHORT).show() }
-        btnCarrito      .setOnClickListener { startActivity(Intent(this,Orden::class.java)) }
+       // btnCarrito      .setOnClickListener { startActivity(Intent(this,Orden::class.java)) }
     }
 }
