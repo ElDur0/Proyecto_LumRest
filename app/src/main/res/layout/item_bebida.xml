@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_border"
+    android:padding="16dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la bebida"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/tvPiezas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Piezas"
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/btnEditarBebida"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2196F3"
+        android:textColor="@android:color/white" />
+</LinearLayout>

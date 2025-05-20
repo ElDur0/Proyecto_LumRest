@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <EditText
+        android:id="@+id/etNombreBebida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/etDescripcionBebida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción"
+        android:inputType="textMultiLine"
+        android:layout_marginTop="12dp" />
+
+    <EditText
+        android:id="@+id/etPiezasBebida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Piezas"
+        android:inputType="number"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btnGuardarBebida"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="@android:color/white" />
+</LinearLayout>

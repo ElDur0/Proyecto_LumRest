@@ -24,7 +24,7 @@ class RestaurantePrincipal : AppCompatActivity() {
         btnMesas        = findViewById(R.id.btnMesas)
 
 
-        btnPedidos.setOnClickListener   { startActivity(Intent(this,Pedidos::class.java))   }
+        btnPedidos.setOnClickListener   { startActivity(Intent(this, PrincipalChef::class.java))   }
         btnCatalogos.setOnClickListener { startActivity(Intent(this,Catalogos::class.java)) }
         btnEmpleados.setOnClickListener { startActivity(Intent(this,EmpleadosActivity::class.java)) }
         btnCuentas.setOnClickListener   { startActivity(Intent(this,Cuentas::class.java))   }

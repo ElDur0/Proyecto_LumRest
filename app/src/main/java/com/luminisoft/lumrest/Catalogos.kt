@@ -19,6 +19,7 @@ class Catalogos : AppCompatActivity() {
         val tarjetaEntradas     = findViewById<LinearLayout>(R.id.tarjetaEntradas)
 
         tarjetaAlimentos.setOnClickListener { startActivity(Intent(this, Alimentos::class.java)) }
+        tarjetaBebidas.setOnClickListener   { startActivity(Intent(this, Bebidas::class.java))   }
 
     }
 }
