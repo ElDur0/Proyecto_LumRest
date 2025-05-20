@@ -19,6 +19,9 @@
         android:theme="@style/Theme.Lumrest"
         tools:targetApi="31">
         <activity
+            android:name=".Alimentos"
+            android:exported="false" />
+        <activity
             android:name=".PrincipalChef"
             android:exported="false" />
         <activity
