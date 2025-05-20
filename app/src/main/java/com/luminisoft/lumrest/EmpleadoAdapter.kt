@@ -17,13 +17,13 @@ class EmpleadoAdapter(private val empleados: List<Empleado>) :
         private var posicionExpandida = -1
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
 
-        val tvNombre = view.findViewById<TextView>(R.id.tvNombre)
-        val tvPuesto = view.findViewById<TextView>(R.id.tvPuesto)
-        val tvHorario = view.findViewById<TextView>(R.id.tvHorario)
-        val btnEditar = view.findViewById<Button>(R.id.btnEditar)
-        val btnEliminar = view.findViewById<Button>(R.id.btnEliminar)
-        val layoutDetalles = view.findViewById<LinearLayout>(R.id.layoutDetalles)
-        val headerEmpleado = view.findViewById<LinearLayout>(R.id.headerEmpleado)
+        val tvNombre        = view.findViewById<TextView>(R.id.tvNombre)
+        val tvPuesto        = view.findViewById<TextView>(R.id.tvPuesto)
+        val tvHorario       = view.findViewById<TextView>(R.id.tvHorario)
+        val btnEditar       = view.findViewById<Button>(R.id.btnEditar)
+        val btnEliminar     = view.findViewById<Button>(R.id.btnEliminar)
+        val layoutDetalles  = view.findViewById<LinearLayout>(R.id.layoutDetalles)
+        val headerEmpleado  = view.findViewById<LinearLayout>(R.id.headerEmpleado)
     }
 
 
@@ -42,11 +42,11 @@ class EmpleadoAdapter(private val empleados: List<Empleado>) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val empleado = empleados[position]
-        holder.tvNombre.text = empleado.nombre
-        holder.tvPuesto.text = "Puesto: ${empleado.puesto}"
-        holder.tvHorario.text = "Horario: ${empleado.horario}"
+        holder.tvNombre.text   = empleado.nombre
+        holder.tvPuesto.text   = "Puesto: ${empleado.puesto}"
+        holder.tvHorario.text  = "Horario: ${empleado.horario}"
+        val estaExpandido      = position == posicionExpandida
 
-        val estaExpandido = position == posicionExpandida
         holder.layoutDetalles.visibility = if (estaExpandido) View.VISIBLE else View.GONE
 
         // Click para expandir

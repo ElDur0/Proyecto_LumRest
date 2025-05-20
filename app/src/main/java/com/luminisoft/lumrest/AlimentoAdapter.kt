@@ -16,10 +16,10 @@ class AlimentoAdapter(
 ) : RecyclerView.Adapter<AlimentoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
-        val btnEditar: Button = view.findViewById(R.id.btnEditarAlimento)
+        val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val btnEditar: Button       = view.findViewById(R.id.btnEditarAlimento)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,9 +31,9 @@ class AlimentoAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val alimento = lista[position]
 
-        holder.tvNombre.text = alimento.nombre
+        holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
-        holder.tvPiezas.text = "Piezas: ${alimento.piezas}"
+        holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
 
         holder.btnEditar.setOnClickListener {
             mostrarDialogEditar(holder.itemView, alimento)
@@ -43,13 +43,13 @@ class AlimentoAdapter(
     override fun getItemCount(): Int = lista.size
 
     private fun mostrarDialogEditar(view: View, alimento: Alimento) {
-        val contexto = view.context
+        val contexto   = view.context
         val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_agregar_alimento, null)
 
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombreAlimento)
+        val etNombre      = dialogView.findViewById<EditText>(R.id.etNombreAlimento)
         val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcionAlimento)
-        val etPiezas = dialogView.findViewById<EditText>(R.id.etPiezas)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarAlimento)
+        val etPiezas      = dialogView.findViewById<EditText>(R.id.etPiezas)
+        val btnGuardar    = dialogView.findViewById<Button>(R.id.btnGuardarAlimento)
 
         // Prellenar campos
         etNombre.setText(alimento.nombre)
@@ -62,9 +62,9 @@ class AlimentoAdapter(
             .create()
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
+            val nombre      = etNombre.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
-            val piezas = etPiezas.text.toString().trim().toIntOrNull() ?: 0
+            val piezas      = etPiezas.text.toString().trim().toIntOrNull() ?: 0
 
             if (nombre.isEmpty() || descripcion.isEmpty()) {
                 Toast.makeText(contexto, "Campos vacíos", Toast.LENGTH_SHORT).show()

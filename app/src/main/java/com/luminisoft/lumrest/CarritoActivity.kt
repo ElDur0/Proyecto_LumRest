@@ -15,29 +15,28 @@ import com.luminisoft.lumrest.data.Alimento
 
 class CarritoActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var tvTotal: TextView
-    private lateinit var btnConfirmar: Button
-    private lateinit var adapter: AlimentoCarritoAdapter
+    private lateinit var recyclerView:  RecyclerView
+    private lateinit var tvTotal:       TextView
+    private lateinit var btnConfirmar:  Button
+    private lateinit var adapter:       AlimentoCarritoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
 
-        recyclerView = findViewById(R.id.recyclerCarrito)
-        tvTotal = findViewById(R.id.tvTotalItems)
-        btnConfirmar = findViewById(R.id.btnConfirmarPedido)
+        recyclerView        = findViewById(R.id.recyclerCarrito)
+        tvTotal             = findViewById(R.id.tvTotalItems)
+        btnConfirmar        = findViewById(R.id.btnConfirmarPedido)
 
-        val listaCarrito = CarritoManager.obtenerCarrito().toMutableList()
+        val listaCarrito    = CarritoManager.obtenerCarrito().toMutableList()
 
         adapter = AlimentoCarritoAdapter(listaCarrito) {
             tvTotal.text = "Total de productos: ${CarritoManager.obtenerCarrito().size}"
         }
 
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-
-        tvTotal.text = "Total de productos: ${listaCarrito.size}"
+        recyclerView.layoutManager  = LinearLayoutManager(this)
+        recyclerView.adapter        = adapter
+        tvTotal.text                = "Total de productos: ${listaCarrito.size}"
 
         btnConfirmar.setOnClickListener {
             if (listaCarrito.isEmpty()) {

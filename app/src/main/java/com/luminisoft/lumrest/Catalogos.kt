@@ -20,6 +20,7 @@ class Catalogos : AppCompatActivity() {
 
         tarjetaAlimentos.setOnClickListener { startActivity(Intent(this, Alimentos::class.java)) }
         tarjetaBebidas.setOnClickListener   { startActivity(Intent(this, Bebidas::class.java))   }
-
+        //tarjetaBotanas.setOnClickListener   { startActivity(Intent(this, Botanas::class.java))   }
+        //tarjetaEntradas.setOnClickListener  { startActivity(Intent(this, Entradas::class.java))  }
     }
 }

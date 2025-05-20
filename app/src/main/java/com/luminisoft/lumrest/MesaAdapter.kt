@@ -17,12 +17,12 @@ class MesaAdapter(
     private var expandida = -1
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre = view.findViewById<TextView>(R.id.tvNombreMesa)
-        val tvDescripcion = view.findViewById<TextView>(R.id.tvDescripcionMesa)
-        val btnEditar = view.findViewById<Button>(R.id.btnEditarMesa)
-        val btnEliminar = view.findViewById<Button>(R.id.btnEliminarMesa)
-        val layoutDetalles = view.findViewById<LinearLayout>(R.id.layoutDetallesMesa)
-        val header = view.findViewById<LinearLayout>(R.id.headerMesa)
+        val tvNombre        = view.findViewById<TextView>(R.id.tvNombreMesa)
+        val tvDescripcion   = view.findViewById<TextView>(R.id.tvDescripcionMesa)
+        val btnEditar       = view.findViewById<Button>(R.id.btnEditarMesa)
+        val btnEliminar     = view.findViewById<Button>(R.id.btnEliminarMesa)
+        val layoutDetalles  = view.findViewById<LinearLayout>(R.id.layoutDetallesMesa)
+        val header          = view.findViewById<LinearLayout>(R.id.headerMesa)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,12 +32,11 @@ class MesaAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val mesa = mesas[position]
 
-        holder.tvNombre.text = mesa.nombre
-        holder.tvDescripcion.text = mesa.descripcion
-
-        val estaExpandida = position == expandida
+        val mesa                         = mesas[position]
+        holder.tvNombre.text             = mesa.nombre
+        holder.tvDescripcion.text        = mesa.descripcion
+        val estaExpandida                = position == expandida
         holder.layoutDetalles.visibility = if (estaExpandida) View.VISIBLE else View.GONE
 
         holder.header.setOnClickListener {

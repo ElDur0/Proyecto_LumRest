@@ -33,16 +33,14 @@ class MenuAlimentos : AppCompatActivity() {
             .allowMainThreadQueries()
             .build()
 
-        alimentoDao = db.alimentoDao()
+        alimentoDao                     = db.alimentoDao()
+        recyclerView                    = findViewById(R.id.recyclerAlimentosMenu)
+        val alimentos: List<Alimento>   = alimentoDao.getAll()
+        adapter                         = AlimentoMenuAdapter(alimentos)
+        recyclerView.layoutManager      = LinearLayoutManager(this)
+        recyclerView.adapter            = adapter
+        ivCarrito                       = findViewById(R.id.ivCarrito)
 
-        // Configurar RecyclerView
-        recyclerView = findViewById(R.id.recyclerAlimentosMenu)
-        val alimentos: List<Alimento> = alimentoDao.getAll()
-        adapter = AlimentoMenuAdapter(alimentos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        recyclerView.adapter = adapter
-
-        ivCarrito = findViewById(R.id.ivCarrito)
         ivCarrito.setOnClickListener {
             if (CarritoManager.obtenerCarrito().isEmpty()) {
                 Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()

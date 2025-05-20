@@ -13,18 +13,21 @@ import com.luminisoft.lumrest.data.Pedido
 
 class PrincipalChef : AppCompatActivity() {
 
-    private lateinit var pedidoDao: com.luminisoft.lumrest.data.PedidoDao
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: PedidoAdapter
+    private lateinit var pedidoDao:     com.luminisoft.lumrest.data.PedidoDao
+    private lateinit var recyclerView:  RecyclerView
+    private lateinit var adapter:       PedidoAdapter
 
     private fun cargarPedidos() {
+
         val pedidos = pedidoDao.getAll()
-        adapter = PedidoAdapter(pedidos, pedidoDao) {
+        adapter     = PedidoAdapter(pedidos, pedidoDao) {
+
             cargarPedidos() // se actualiza al cambiar estado
         }
-        recyclerView.adapter = adapter
+
+        recyclerView.adapter       = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
-    }
+    }//fin cargar pedidos
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +41,7 @@ class PrincipalChef : AppCompatActivity() {
             .allowMainThreadQueries()
             .build()
 
-        pedidoDao = db.pedidoDao()
+        pedidoDao    = db.pedidoDao()
         recyclerView = findViewById(R.id.recyclerPedidos)
 
         val btnAgregarPedido = findViewById<ImageView>(R.id.btnAgregarPedido)
@@ -56,12 +59,12 @@ class PrincipalChef : AppCompatActivity() {
             .setView(dialogView)
             .create()
 
-        val etMesa = dialogView.findViewById<EditText>(R.id.etMesa)
-        val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcion)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarPedido)
+        val etMesa          = dialogView.findViewById<EditText>(R.id.etMesa)
+        val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcion)
+        val btnGuardar      = dialogView.findViewById<Button>(R.id.btnGuardarPedido)
 
         btnGuardar.setOnClickListener {
-            val mesa = etMesa.text.toString().trim()
+            val mesa        = etMesa.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
 
             if (mesa.isEmpty() || descripcion.isEmpty()) {

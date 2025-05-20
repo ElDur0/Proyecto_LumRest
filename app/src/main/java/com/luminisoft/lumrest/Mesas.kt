@@ -16,15 +16,15 @@ import com.luminisoft.lumrest.data.Mesa
 
 class Mesas : AppCompatActivity() {
 
-    private lateinit var mesaDao: com.luminisoft.lumrest.data.MesaDao
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: MesaAdapter
+    private lateinit var mesaDao:       com.luminisoft.lumrest.data.MesaDao
+    private lateinit var recyclerView:  RecyclerView
+    private lateinit var adapter:       MesaAdapter
 
     private fun cargarListaMesas() {
-        val mesas = mesaDao.getAll()
-        adapter = MesaAdapter(mesas)
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        val mesas                   = mesaDao.getAll()
+        adapter                     = MesaAdapter(mesas)
+        recyclerView.adapter        = adapter
+        recyclerView.layoutManager  = LinearLayoutManager(this)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,14 +36,14 @@ class Mesas : AppCompatActivity() {
             val db = Room.databaseBuilder(
                 applicationContext,
                 AppDatabase::class.java,
-                "empleados-db" // Usa la misma DB
+                "empleados-db"
             ).fallbackToDestructiveMigration()
                 .allowMainThreadQueries()
                 .build()
 
-            mesaDao = db.mesaDao()
-
+            mesaDao      = db.mesaDao()
             recyclerView = findViewById(R.id.recyclerMesas)
+
             cargarListaMesas()
 
             val btnAgregar = findViewById<View>(R.id.btnAgregarMesa)
@@ -57,18 +57,18 @@ class Mesas : AppCompatActivity() {
     }
 
     private fun mostrarDialogAgregarMesa() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_mesa, null)
-        val dialog = AlertDialog.Builder(this)
+        val dialogView  = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_mesa, null)
+        val dialog      = AlertDialog.Builder(this)
             .setTitle("Agregar Mesa")
             .setView(dialogView)
             .create()
 
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombreMesa)
-        val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcionMesa)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarMesa)
+        val etNombre        = dialogView.findViewById<EditText>(R.id.etNombreMesa)
+        val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcionMesa)
+        val btnGuardar      = dialogView.findViewById<Button>(R.id.btnGuardarMesa)
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
+            val nombre      = etNombre.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
 
             if (nombre.isEmpty() || descripcion.isEmpty()) {

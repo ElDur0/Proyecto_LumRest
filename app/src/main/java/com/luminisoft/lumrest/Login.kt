@@ -13,9 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
 class Login : AppCompatActivity() {
-    private lateinit var etEmail: EditText
+    private lateinit var etEmail:    EditText
     private lateinit var etPassword: EditText
-    private lateinit var btnLogin: Button
+    private lateinit var btnLogin:   Button
     private lateinit var tvRegister: TextView
 
 
@@ -35,6 +35,7 @@ class Login : AppCompatActivity() {
             if(email.isEmpty() || password.isEmpty()){
                 Toast.makeText(this, "CAMPOS INCOMPLETOS",Toast.LENGTH_SHORT).show()
             }else{
+
                 if (email == "cliente@gmail.com" && password == "12345") {
                     startActivity(Intent(this,ClientePrincipal::class.java))
                     finish()
@@ -52,7 +53,7 @@ class Login : AppCompatActivity() {
                     finish()
                 }
                 //Toast.makeText(this,"Correo o contraseña incorrectos",Toast.LENGTH_SHORT).show()
-            }
+            }//fin del else
 
         }
 

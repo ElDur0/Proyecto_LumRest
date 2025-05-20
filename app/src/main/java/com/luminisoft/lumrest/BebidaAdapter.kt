@@ -17,10 +17,10 @@ class BebidaAdapter(
 ) : RecyclerView.Adapter<BebidaAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
-        val btnEditar: Button = view.findViewById(R.id.btnEditarBebida)
+        val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val btnEditar: Button       = view.findViewById(R.id.btnEditarBebida)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,9 +32,9 @@ class BebidaAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val bebida = lista[position]
 
-        holder.tvNombre.text = bebida.nombre
-        holder.tvDescripcion.text = bebida.descripcion
-        holder.tvPiezas.text = "Piezas: ${bebida.piezas}"
+        holder.tvNombre.text        = bebida.nombre
+        holder.tvDescripcion.text   = bebida.descripcion
+        holder.tvPiezas.text        = "Piezas: ${bebida.piezas}"
 
         holder.btnEditar.setOnClickListener {
             mostrarDialogEditar(holder.itemView.context, bebida)
@@ -48,24 +48,24 @@ class BebidaAdapter(
             .setView(dialogView)
             .create()
 
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombreBebida)
-        val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcionBebida)
-        val etPiezas = dialogView.findViewById<EditText>(R.id.etPiezasBebida)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarBebida)
+        val etNombre        = dialogView.findViewById<EditText>(R.id.etNombreBebida)
+        val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcionBebida)
+        val etPiezas        = dialogView.findViewById<EditText>(R.id.etPiezasBebida)
+        val btnGuardar      = dialogView.findViewById<Button>(R.id.btnGuardarBebida)
 
-        etNombre.setText(bebida.nombre)
-        etDescripcion.setText(bebida.descripcion)
-        etPiezas.setText(bebida.piezas.toString())
+        etNombre        .setText(bebida.nombre)
+        etDescripcion   .setText(bebida.descripcion)
+        etPiezas        .setText(bebida.piezas.toString())
 
         btnGuardar.setOnClickListener {
-            val nuevoNombre = etNombre.text.toString().trim()
-            val nuevaDescripcion = etDescripcion.text.toString().trim()
-            val nuevasPiezas = etPiezas.text.toString().toIntOrNull() ?: 0
+            val nuevoNombre         = etNombre.text.toString().trim()
+            val nuevaDescripcion    = etDescripcion.text.toString().trim()
+            val nuevasPiezas        = etPiezas.text.toString().toIntOrNull() ?: 0
 
             if (nuevoNombre.isNotEmpty() && nuevaDescripcion.isNotEmpty() && nuevasPiezas > 0) {
-                bebida.nombre = nuevoNombre
-                bebida.descripcion = nuevaDescripcion
-                bebida.piezas = nuevasPiezas
+                bebida.nombre       = nuevoNombre
+                bebida.descripcion  = nuevaDescripcion
+                bebida.piezas       = nuevasPiezas
                 bebidaDao.update(bebida)
                 Toast.makeText(context, "Bebida actualizada", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()

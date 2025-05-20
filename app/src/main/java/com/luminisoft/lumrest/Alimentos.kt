@@ -13,16 +13,16 @@ import com.luminisoft.lumrest.data.AppDatabase
 
 class Alimentos : AppCompatActivity() {
 
-    private lateinit var alimentoDao: com.luminisoft.lumrest.data.AlimentoDao
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AlimentoAdapter
+    private lateinit var alimentoDao:   com.luminisoft.lumrest.data.AlimentoDao
+    private lateinit var recyclerView:  RecyclerView
+    private lateinit var adapter:       AlimentoAdapter
 
     private fun cargarAlimentos() {
         val alimentos = alimentoDao.getAll()
         adapter = AlimentoAdapter(alimentos, alimentoDao) {
             cargarAlimentos()
         }
-        recyclerView.adapter = adapter
+        recyclerView.adapter       = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
@@ -38,7 +38,7 @@ class Alimentos : AppCompatActivity() {
             .allowMainThreadQueries()
             .build()
 
-        alimentoDao = db.alimentoDao()
+        alimentoDao  = db.alimentoDao()
         recyclerView = findViewById(R.id.recyclerAlimentos)
 
         val btnAgregar = findViewById<Button>(R.id.btnAgregarAlimento)
@@ -56,15 +56,15 @@ class Alimentos : AppCompatActivity() {
             .setView(dialogView)
             .create()
 
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombreAlimento)
+        val etNombre      = dialogView.findViewById<EditText>(R.id.etNombreAlimento)
         val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcionAlimento)
-        val etPiezas = dialogView.findViewById<EditText>(R.id.etPiezas)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarAlimento)
+        val etPiezas      = dialogView.findViewById<EditText>(R.id.etPiezas)
+        val btnGuardar    = dialogView.findViewById<Button>(R.id.btnGuardarAlimento)
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
+            val nombre      = etNombre.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
-            val piezas = etPiezas.text.toString().trim().toIntOrNull() ?: 0
+            val piezas      = etPiezas.text.toString().trim().toIntOrNull() ?: 0
 
             if (nombre.isEmpty() || descripcion.isEmpty()) {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()

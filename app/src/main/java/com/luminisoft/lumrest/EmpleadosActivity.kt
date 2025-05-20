@@ -18,9 +18,9 @@ import com.luminisoft.lumrest.data.Empleado
 class EmpleadosActivity : AppCompatActivity() {
 
     // Referencia al DAO
-    private lateinit var empleadoDao: com.luminisoft.lumrest.data.EmpleadoDao
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: EmpleadoAdapter
+    private lateinit var empleadoDao:   com.luminisoft.lumrest.data.EmpleadoDao
+    private lateinit var recyclerView:  RecyclerView
+    private lateinit var adapter:       EmpleadoAdapter
 
     private fun cargarListaEmpleados(){
         val empleados              = empleadoDao.getAll()
@@ -43,9 +43,9 @@ class EmpleadosActivity : AppCompatActivity() {
                 "empleados-db"
             ).allowMainThreadQueries().build()
 
-            empleadoDao = db.empleadoDao()
-
+            empleadoDao  = db.empleadoDao()
             recyclerView = findViewById(R.id.recyclerEmpleados)
+
             cargarListaEmpleados()
 
             val btnAgregarEmpleado = findViewById<View>(R.id.btnAgregarEmpleado)
@@ -60,20 +60,20 @@ class EmpleadosActivity : AppCompatActivity() {
 
 
     private fun mostrarDialogAgregarEmpleado() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
-        val dialog = AlertDialog.Builder(this)
+        val dialogView  = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
+        val dialog      = AlertDialog.Builder(this)
             .setTitle("Agregar Empleado")
             .setView(dialogView)
             .create()
 
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombre)
-        val etPuesto = dialogView.findViewById<EditText>(R.id.etPuesto)
-        val etHorario = dialogView.findViewById<EditText>(R.id.etHorario)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarEmpleado)
+        val etNombre    = dialogView.findViewById<EditText>(R.id.etNombre)
+        val etPuesto    = dialogView.findViewById<EditText>(R.id.etPuesto)
+        val etHorario   = dialogView.findViewById<EditText>(R.id.etHorario)
+        val btnGuardar  = dialogView.findViewById<Button>(R.id.btnGuardarEmpleado)
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
-            val puesto = etPuesto.text.toString().trim()
+            val nombre  = etNombre.text.toString().trim()
+            val puesto  = etPuesto.text.toString().trim()
             val horario = etHorario.text.toString().trim()
 
             if (nombre.isEmpty() || puesto.isEmpty() || horario.isEmpty()) {

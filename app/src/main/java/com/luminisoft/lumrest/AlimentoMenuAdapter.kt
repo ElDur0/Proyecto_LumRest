@@ -13,9 +13,9 @@ class AlimentoMenuAdapter(private val alimentos: List<Alimento>) :
     RecyclerView.Adapter<AlimentoMenuAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
+        val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,9 +27,9 @@ class AlimentoMenuAdapter(private val alimentos: List<Alimento>) :
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val alimento = alimentos[position]
 
-        holder.tvNombre.text = alimento.nombre
+        holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
-        holder.tvPiezas.text = "Piezas: ${alimento.piezas}"
+        holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
 
         holder.itemView.setOnClickListener {
             CarritoManager.agregarAlimento(alimento)
