@@ -2,6 +2,7 @@ package com.luminisoft.lumrest
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -23,6 +24,7 @@ class EmpleadosActivity : AppCompatActivity() {
 
     private fun cargarListaEmpleados(){
         val empleados              = empleadoDao.getAll()
+        Toast.makeText(this, "Total empleados: ${empleados.size}", Toast.LENGTH_SHORT).show()
         adapter                    = EmpleadoAdapter(empleados)
         recyclerView.adapter       = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -46,7 +48,7 @@ class EmpleadosActivity : AppCompatActivity() {
             recyclerView = findViewById(R.id.recyclerEmpleados)
             cargarListaEmpleados()
 
-            val btnAgregarEmpleado = findViewById<Button>(R.id.btnAgregarEmpleado)
+            val btnAgregarEmpleado = findViewById<View>(R.id.btnAgregarEmpleado)
             btnAgregarEmpleado.setOnClickListener {
                 mostrarDialogAgregarEmpleado()
             }

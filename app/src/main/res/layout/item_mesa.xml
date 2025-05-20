@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:background="@drawable/rounded_border"
@@ -7,50 +6,41 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp">
 
-    <!-- Encabezado clickeable -->
     <LinearLayout
-        android:id="@+id/headerEmpleado"
+        android:id="@+id/headerMesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:gravity="center_vertical">
 
         <TextView
-            android:id="@+id/tvNombre"
+            android:id="@+id/tvNombreMesa"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Nombre del empleado"
-            android:textStyle="bold"
             android:layout_weight="1"
+            android:text="Mesa 1"
+            android:textStyle="bold"
             android:textSize="16sp" />
 
         <ImageView
-            android:id="@+id/ivIcono"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_profile" />
     </LinearLayout>
 
-    <!-- Detalles (se mostrarán solo si expandido) -->
     <LinearLayout
-        android:id="@+id/layoutDetalles"
+        android:id="@+id/layoutDetallesMesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
-        android:layout_marginTop="12dp">
+        android:layout_marginTop="8dp"
+        android:visibility="gone">
 
         <TextView
-            android:id="@+id/tvPuesto"
+            android:id="@+id/tvDescripcionMesa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puesto" />
-
-        <TextView
-            android:id="@+id/tvHorario"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Horario" />
+            android:text="Descripción de la mesa" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,7 +49,7 @@
             android:layout_marginTop="8dp">
 
             <Button
-                android:id="@+id/btnEditar"
+                android:id="@+id/btnEditarMesa"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -68,14 +58,14 @@
                 android:textColor="@android:color/white" />
 
             <Button
-                android:id="@+id/btnEliminar"
+                android:id="@+id/btnEliminarMesa"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="Eliminar"
+                android:layout_marginStart="8dp"
                 android:backgroundTint="#F44336"
-                android:textColor="@android:color/white"
-                android:layout_marginStart="8dp" />
+                android:textColor="@android:color/white" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
