@@ -1,0 +1,53 @@
+package com.luminisoft.lumrest
+
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import com.luminisoft.lumrest.data.Pedido
+import com.luminisoft.lumrest.data.PedidoDao
+
+class PedidoAdapter(
+    private val lista: List<Pedido>,
+    private val pedidoDao: PedidoDao,
+    private val onEstadoActualizado: () -> Unit
+) : RecyclerView.Adapter<PedidoAdapter.ViewHolder>() {
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val tvMesa: TextView = view.findViewById(R.id.tvMesa)
+        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
+        val tvEstado: TextView = view.findViewById(R.id.tvEstado)
+        val btnPreparacion: Button = view.findViewById(R.id.btnPreparacion)
+        val btnListo: Button = view.findViewById(R.id.btnListo)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        val vista = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_pedido, parent, false)
+        return ViewHolder(vista)
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val pedido = lista[position]
+
+        holder.tvMesa.text = "Mesa: ${pedido.mesa}"
+        holder.tvDescripcion.text = pedido.descripcion
+        holder.tvEstado.text = "Estado: ${pedido.estado}"
+
+        holder.btnPreparacion.setOnClickListener {
+            pedido.estado = "En preparación"
+            pedidoDao.update(pedido)
+            onEstadoActualizado()
+        }
+
+        holder.btnListo.setOnClickListener {
+            pedido.estado = "Listo"
+            pedidoDao.update(pedido)
+            onEstadoActualizado()
+        }
+    }
+
+    override fun getItemCount(): Int = lista.size
+}

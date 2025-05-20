@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_border"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp"
+    android:backgroundTint="#FFF0F0">
+
+    <TextView
+        android:id="@+id/tvMesa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mesa X"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción del pedido"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:id="@+id/tvEstado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estado: Pendiente"
+        android:textColor="@android:color/darker_gray"
+        android:layout_marginTop="6dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+
+        <Button
+            android:id="@+id/btnPreparacion"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="En preparación"
+            android:backgroundTint="#FFC107"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/btnListo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Listo"
+            android:layout_marginStart="8dp"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

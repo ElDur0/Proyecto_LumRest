@@ -47,7 +47,11 @@ class Login : AppCompatActivity() {
                     startActivity(Intent(this,EmpleadosPrincipal::class.java))
                     finish()
                 }
-                Toast.makeText(this,"Correo o contraseña incorrectos",Toast.LENGTH_SHORT).show()
+                if(email == "chef@gmail.com" && password == "123"){
+                    startActivity(Intent(this,PrincipalChef::class.java))
+                    finish()
+                }
+                //Toast.makeText(this,"Correo o contraseña incorrectos",Toast.LENGTH_SHORT).show()
             }
 
         }

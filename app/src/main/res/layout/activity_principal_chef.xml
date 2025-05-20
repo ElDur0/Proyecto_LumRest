@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@android:color/white">
+
+    <!-- Ícono de menú (≡) -->
+    <ImageView
+        android:id="@+id/ivMenu"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_menu"
+        android:contentDescription="Menú" />
+
+    <!-- Ícono de perfil -->
+    <ImageView
+        android:id="@+id/ivPerfil"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_profile"
+        android:contentDescription="Perfil" />
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedidos"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_alignTop="@id/ivPerfil" />
+
+    <!-- RecyclerView para pedidos -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerPedidos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/ivPerfil"
+        android:layout_above="@id/btnAgregarPedido"
+        android:layout_marginTop="16dp"
+        android:clipToPadding="false" />
+
+    <!-- Botón flotante para agregar pedido -->
+    <ImageView
+        android:id="@+id/btnAgregarPedido"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_add"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="12dp"
+        android:contentDescription="Agregar Pedido"
+        android:elevation="8dp" />
+</RelativeLayout>
