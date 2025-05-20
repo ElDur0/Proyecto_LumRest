@@ -1,6 +1,5 @@
 package com.luminisoft.lumrest
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -29,10 +28,10 @@ class ClienteInicio : AppCompatActivity() {
 
        // btnCarrito       = findViewById(R.id.ivCarrito)
 
-        btnMenuAlimentos.setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
-        btnMenuBebidas  .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
-        btnMenuEntradas .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
-        btnMenuBotanas  .setOnClickListener { startActivity(Intent(this,Menu::class.java)) }
+        btnMenuAlimentos.setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
+        btnMenuBebidas  .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
+        btnMenuEntradas .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
+        btnMenuBotanas  .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
         btnLlamarMesero .setOnClickListener { Toast.makeText(this, "En un momento un mesero lo atenderá",Toast.LENGTH_SHORT).show() }
        // btnCarrito      .setOnClickListener { startActivity(Intent(this,Orden::class.java)) }
     }
