@@ -64,7 +64,7 @@ class CarritoActivity : AppCompatActivity() {
         Firebase.firestore.collection("pedidos")
             .add(pedido)
             .addOnSuccessListener {
-                Toast.makeText(this, "Pedido enviado correctamente", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Pedido enviado a cocina", Toast.LENGTH_SHORT).show()
                 CarritoManager.limpiar()
                 finish()
             }

@@ -1,0 +1,37 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/rounded_border"
+    android:padding="16dp"
+    android:layout_marginBottom="12dp">
+
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción" />
+
+    <TextView
+        android:id="@+id/tvPiezas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Piezas" />
+
+    <Button
+        android:id="@+id/btnAgregarAlimento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Agregar al carrito"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="@color/purple_500"
+        android:textColor="@android:color/white"/>
+</LinearLayout>

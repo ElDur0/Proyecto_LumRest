@@ -2,6 +2,7 @@ package com.luminisoft.lumrest
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -43,21 +44,32 @@ class MenuAlimentos : AppCompatActivity() {
     }
 
     private fun cargarAlimentosDesdeFirebase() {
-        Firebase.firestore.collection("alimentos")
+        val db = Firebase.firestore
+        db.collection("alimentos")
             .get()
             .addOnSuccessListener { snapshot ->
-                alimentos.clear()
-                for (doc in snapshot.documents) {
-                    val alimento = doc.toObject(Alimento::class.java)
-                    alimento?.id = doc.id
-                    if (alimento != null) {
-                        alimentos.add(alimento)
+                if (snapshot != null && !snapshot.isEmpty) {
+                    alimentos.clear()
+                    for (document in snapshot.documents) {
+                        val alimento = document.toObject(Alimento::class.java)
+                        alimento?.id = document.id
+                        if (alimento != null) {
+                            alimentos.add(alimento)
+                        } else {
+                            Log.w("MenuAlimentos", "Documento inválido: ${document.id}")
+                        }
                     }
+                    adapter.notifyDataSetChanged()
+                    Log.d("MenuAlimentos", "Alimentos cargados: ${alimentos.size}")
+                } else {
+                    Log.w("MenuAlimentos", "No se encontraron alimentos")
+                    Toast.makeText(this, "No hay alimentos en la base de datos", Toast.LENGTH_SHORT).show()
                 }
-                adapter.notifyDataSetChanged()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Error al cargar alimentos", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Log.e("MenuAlimentos", "Error al cargar alimentos", e)
+                Toast.makeText(this, "Error al cargar alimentos: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
+
 }

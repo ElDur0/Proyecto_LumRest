@@ -23,7 +23,7 @@ class AlimentoMenuAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val vista = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_alimento, parent, false)
+            .inflate(R.layout.item_menu_alimento, parent, false)
         return ViewHolder(vista)
     }
 
