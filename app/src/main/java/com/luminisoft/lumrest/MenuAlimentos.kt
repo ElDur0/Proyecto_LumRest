@@ -3,44 +3,34 @@ package com.luminisoft.lumrest
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.luminisoft.lumrest.data.Alimento
-import com.luminisoft.lumrest.data.AppDatabase
 import com.luminisoft.lumrest.data.CarritoManager
 
 class MenuAlimentos : AppCompatActivity() {
 
-    private lateinit var alimentoDao    : com.luminisoft.lumrest.data.AlimentoDao
-    private lateinit var recyclerView   : RecyclerView
-    private lateinit var adapter        : AlimentoMenuAdapter
-    private lateinit var ivCarrito      : ImageView
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var adapter: AlimentoMenuAdapter
+    private lateinit var ivCarrito: ImageView
+
+    private val alimentos = mutableListOf<Alimento>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_alimentos)
 
-        // Conectar a la base de datos
-        val db = Room.databaseBuilder(
-            applicationContext,
-            AppDatabase::class.java,
-            "empleados-db"
-        ).fallbackToDestructiveMigration()
-            .allowMainThreadQueries()
-            .build()
+        recyclerView = findViewById(R.id.recyclerAlimentosMenu)
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
-        alimentoDao                     = db.alimentoDao()
-        recyclerView                    = findViewById(R.id.recyclerAlimentosMenu)
-        val alimentos: List<Alimento>   = alimentoDao.getAll()
-        adapter                         = AlimentoMenuAdapter(alimentos)
-        recyclerView.layoutManager      = LinearLayoutManager(this)
-        recyclerView.adapter            = adapter
-        ivCarrito                       = findViewById(R.id.ivCarrito)
+        adapter = AlimentoMenuAdapter(alimentos)
+        recyclerView.adapter = adapter
 
+        ivCarrito = findViewById(R.id.ivCarrito)
         ivCarrito.setOnClickListener {
             if (CarritoManager.obtenerCarrito().isEmpty()) {
                 Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()
@@ -48,5 +38,26 @@ class MenuAlimentos : AppCompatActivity() {
                 startActivity(Intent(this, CarritoActivity::class.java))
             }
         }
+
+        cargarAlimentosDesdeFirebase()
+    }
+
+    private fun cargarAlimentosDesdeFirebase() {
+        Firebase.firestore.collection("alimentos")
+            .get()
+            .addOnSuccessListener { snapshot ->
+                alimentos.clear()
+                for (doc in snapshot.documents) {
+                    val alimento = doc.toObject(Alimento::class.java)
+                    alimento?.id = doc.id
+                    if (alimento != null) {
+                        alimentos.add(alimento)
+                    }
+                }
+                adapter.notifyDataSetChanged()
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, "Error al cargar alimentos", Toast.LENGTH_SHORT).show()
+            }
     }
 }

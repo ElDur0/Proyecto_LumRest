@@ -3,14 +3,15 @@ package com.luminisoft.lumrest
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.luminisoft.lumrest.data.Alimento
 import com.luminisoft.lumrest.data.CarritoManager
 
 class AlimentoCarritoAdapter(
     private val alimentos: MutableList<Alimento>,
-    private val onItemEliminado: () -> Unit
+    private val onEliminar: (Alimento) -> Unit
 ) : RecyclerView.Adapter<AlimentoCarritoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -37,7 +38,7 @@ class AlimentoCarritoAdapter(
             alimentos.removeAt(position)
             notifyItemRemoved(position)
             notifyItemRangeChanged(position, alimentos.size)
-            onItemEliminado()
+            onEliminar(alimento)
         }
     }
 
