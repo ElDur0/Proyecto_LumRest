@@ -1,31 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="24dp"
-    android:background="@android:color/white">
+    android:padding="16dp">
 
     <EditText
         android:id="@+id/etNombreMesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nombre de la mesa"
-        android:inputType="textPersonName" />
+        android:hint="Nombre de la mesa" />
 
     <EditText
-        android:id="@+id/etDescripcionMesa"
+        android:id="@+id/etDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Descripción"
-        android:inputType="text" />
+        android:hint="Descripción" />
 
     <Button
         android:id="@+id/btnGuardarMesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Guardar"
-        android:layout_marginTop="16dp"
-        android:backgroundTint="@color/purple_500"
-        android:textColor="@android:color/white" />
+        android:text="Guardar" />
 </LinearLayout>

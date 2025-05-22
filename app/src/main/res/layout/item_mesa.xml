@@ -1,71 +1,49 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/rounded_border"
     android:padding="16dp"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
     android:layout_marginBottom="12dp">
 
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nombre de la mesa"
+        android:textStyle="bold"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Descripción de la mesa"
+        android:layout_marginTop="4dp" />
+
     <LinearLayout
-        android:id="@+id/headerMesa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:layout_marginTop="8dp">
 
-        <TextView
-            android:id="@+id/tvNombreMesa"
+        <Button
+            android:id="@+id/btnEditar"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Mesa 1"
-            android:textStyle="bold"
-            android:textSize="16sp" />
-
-        <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:src="@drawable/ic_profile" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/layoutDetallesMesa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="8dp"
-        android:visibility="gone">
-
-        <TextView
-            android:id="@+id/tvDescripcionMesa"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Descripción de la mesa" />
+            android:text="Editar"
+            android:backgroundTint="#4CAF50"
+            android:textColor="@android:color/white" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="8dp">
-
-            <Button
-                android:id="@+id/btnEditarMesa"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Editar"
-                android:backgroundTint="#4CAF50"
-                android:textColor="@android:color/white" />
-
-            <Button
-                android:id="@+id/btnEliminarMesa"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:text="Eliminar"
-                android:layout_marginStart="8dp"
-                android:backgroundTint="#F44336"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
+            android:layout_marginStart="8dp"
+            android:text="Eliminar"
+            android:backgroundTint="#F44336"
+            android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

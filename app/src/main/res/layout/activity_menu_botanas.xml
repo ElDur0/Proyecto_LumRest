@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -5,22 +6,22 @@
     android:background="@android:color/white">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerMesas"
+        android:id="@+id/recyclerBotanasMenu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/btnAgregarMesa"
-        android:layout_marginBottom="16dp" />
+        android:layout_above="@id/ivCarrito"
+        android:layout_marginBottom="16dp"/>
 
     <ImageView
-        android:id="@+id/btnAgregarMesa"
+        android:id="@+id/ivCarrito"
         android:layout_width="56dp"
         android:layout_height="56dp"
+        android:src="@drawable/ic_cart"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_margin="12dp"
-        android:src="@drawable/ic_add"
         android:background="@android:color/holo_blue_dark"
         android:padding="12dp"
-        android:contentDescription="Agregar Mesa"
+        android:contentDescription="Ver carrito"
         android:elevation="8dp" />
 </RelativeLayout>

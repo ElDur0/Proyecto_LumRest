@@ -15,16 +15,16 @@
         android:textSize="16sp" />
 
     <TextView
-        android:id="@+id/tvPuesto"
+        android:id="@+id/tvDescripcion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Puesto" />
+        android:text="Descripción" />
 
     <TextView
-        android:id="@+id/tvHorario"
+        android:id="@+id/tvPiezas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Horario" />
+        android:text="Piezas" />
 
     <LinearLayout
         android:layout_width="match_parent"

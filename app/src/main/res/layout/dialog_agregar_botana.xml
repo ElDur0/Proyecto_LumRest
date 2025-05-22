@@ -2,7 +2,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="20dp">
 
     <EditText
         android:id="@+id/etNombre"
@@ -11,19 +11,20 @@
         android:hint="Nombre" />
 
     <EditText
-        android:id="@+id/etPuesto"
+        android:id="@+id/etDescripcion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Puesto" />
+        android:hint="Descripción" />
 
     <EditText
-        android:id="@+id/etHorario"
+        android:id="@+id/etPiezas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Horario" />
+        android:hint="Número de piezas"
+        android:inputType="number" />
 
     <Button
-        android:id="@+id/btnGuardarEmpleado"
+        android:id="@+id/btnGuardarBotana"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Guardar" />

@@ -49,6 +49,7 @@ dependencies {
     implementation("androidx.activity:activity-ktx:1.7.2")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.room:room-runtime:2.6.1")
+    implementation(libs.androidx.activity)
     kapt("androidx.room:room-compiler:2.6.1")
 
     implementation(enforcedPlatform("com.google.firebase:firebase-bom:32.2.0"))

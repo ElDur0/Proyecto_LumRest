@@ -31,7 +31,7 @@ class ClienteInicio : AppCompatActivity() {
         btnMenuAlimentos.setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
         btnMenuBebidas  .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
         btnMenuEntradas .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
-        btnMenuBotanas  .setOnClickListener { startActivity(Intent(this,MenuAlimentos::class.java)) }
+        btnMenuBotanas  .setOnClickListener { startActivity(Intent(this, MenuBotanas::class.java)) }
         btnLlamarMesero .setOnClickListener { Toast.makeText(this, "En un momento un mesero lo atenderá",Toast.LENGTH_SHORT).show() }
        // btnCarrito      .setOnClickListener { startActivity(Intent(this,Orden::class.java)) }
     }
