@@ -12,23 +12,22 @@ import com.luminisoft.lumrest.data.CarritoManager
 
 class CarritoActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AlimentoCarritoAdapter
-    private lateinit var btnEnviarPedido: Button
+    private lateinit var recyclerView    : RecyclerView
+    private lateinit var adapter         : AlimentoCarritoAdapter
+    private lateinit var btnEnviarPedido : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
 
-        recyclerView = findViewById(R.id.recyclerCarrito)
-        btnEnviarPedido = findViewById(R.id.btnConfirmarPedido)
-
+        recyclerView               = findViewById(R.id.recyclerCarrito)
+        btnEnviarPedido            = findViewById(R.id.btnConfirmarPedido)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = AlimentoCarritoAdapter(CarritoManager.obtenerCarrito().toMutableList()) { alimento ->
+        adapter                    = AlimentoCarritoAdapter(CarritoManager.obtenerCarrito().toMutableList()) { alimento ->
             CarritoManager.eliminarAlimento(alimento)
                 actualizarVista()
         }
-        recyclerView.adapter = adapter
+        recyclerView.adapter       = adapter
 
         btnEnviarPedido.setOnClickListener {
             enviarPedidoAFirebase()
@@ -36,7 +35,7 @@ class CarritoActivity : AppCompatActivity() {
     }
 
     private fun actualizarVista() {
-        adapter = AlimentoCarritoAdapter(CarritoManager.obtenerCarrito().toMutableList()) { alimento ->
+        adapter             = AlimentoCarritoAdapter(CarritoManager.obtenerCarrito().toMutableList()) { alimento ->
             CarritoManager.eliminarAlimento(alimento)
             actualizarVista()
         }
@@ -44,7 +43,7 @@ class CarritoActivity : AppCompatActivity() {
     }
 
     private fun enviarPedidoAFirebase() {
-        val carrito = CarritoManager.obtenerCarrito()
+        val carrito     = CarritoManager.obtenerCarrito()
         if (carrito.isEmpty()) {
             Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()
             return
@@ -55,10 +54,10 @@ class CarritoActivity : AppCompatActivity() {
         }
 
         val pedido = hashMapOf(
-            "mesa" to "Mesa virtual",
+            "mesa"        to "Mesa virtual",
             "descripcion" to descripcion,
-            "estado" to "Pendiente",
-            "timestamp" to FieldValue.serverTimestamp()
+            "estado"      to "Pendiente",
+            "timestamp"   to FieldValue.serverTimestamp()
         )
 
         Firebase.firestore.collection("pedidos")

@@ -13,17 +13,18 @@ import com.luminisoft.lumrest.data.Alimento
 
 class Alimentos : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AlimentoAdapter
-    private val db = Firebase.firestore
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var adapter        : AlimentoAdapter
+
+    private val db        = Firebase.firestore
     private val alimentos = mutableListOf<Alimento>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_alimentos)
 
-        recyclerView = findViewById(R.id.recyclerAlimentos)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView                = findViewById(R.id.recyclerAlimentos)
+        recyclerView.layoutManager  = LinearLayoutManager(this)
 
         adapter = AlimentoAdapter(alimentos) { alimento ->
             mostrarDialogEditarAlimento(alimento)
@@ -48,8 +49,8 @@ class Alimentos : AppCompatActivity() {
 
                 alimentos.clear()
                 for (doc in snapshot!!) {
-                    val alimento = doc.toObject(Alimento::class.java)
-                    alimento.id = doc.id
+                    val alimento    = doc.toObject(Alimento::class.java)
+                    alimento.id     = doc.id
                     alimentos.add(alimento)
                 }
                 adapter.actualizarLista(alimentos)
@@ -57,18 +58,18 @@ class Alimentos : AppCompatActivity() {
     }
 
     private fun mostrarDialogAgregarAlimento() {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_alimento, null)
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombre)
-        val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcion)
-        val etPiezas = dialogView.findViewById<EditText>(R.id.etPiezas)
+        val dialogView      = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_alimento, null)
+        val etNombre        = dialogView.findViewById<EditText>(R.id.etNombre)
+        val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcion)
+        val etPiezas        = dialogView.findViewById<EditText>(R.id.etPiezas)
 
         AlertDialog.Builder(this)
             .setTitle("Agregar alimento")
             .setView(dialogView)
             .setPositiveButton("Guardar") { dialog, _ ->
-                val nombre = etNombre.text.toString().trim()
+                val nombre      = etNombre     .text.toString().trim()
                 val descripcion = etDescripcion.text.toString().trim()
-                val piezas = etPiezas.text.toString().toIntOrNull() ?: 0
+                val piezas      = etPiezas     .text.toString().toIntOrNull() ?: 0
 
                 if (nombre.isNotEmpty()) {
                     val nuevoAlimento = hashMapOf(
@@ -91,22 +92,22 @@ class Alimentos : AppCompatActivity() {
     }
 
     private fun mostrarDialogEditarAlimento(alimento: Alimento) {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_alimento, null)
-        val etNombre = dialogView.findViewById<EditText>(R.id.etNombre)
+        val dialogView    = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_alimento, null)
+        val etNombre      = dialogView.findViewById<EditText>(R.id.etNombre)
         val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcion)
-        val etPiezas = dialogView.findViewById<EditText>(R.id.etPiezas)
+        val etPiezas      = dialogView.findViewById<EditText>(R.id.etPiezas)
 
-        etNombre.setText(alimento.nombre)
-        etDescripcion.setText(alimento.descripcion)
-        etPiezas.setText(alimento.piezas.toString())
+        etNombre      .setText(alimento.nombre)
+        etDescripcion .setText(alimento.descripcion)
+        etPiezas      .setText(alimento.piezas.toString())
 
         AlertDialog.Builder(this)
             .setTitle("Editar alimento")
             .setView(dialogView)
             .setPositiveButton("Actualizar") { dialog, _ ->
-                val nombre = etNombre.text.toString().trim()
-                val descripcion = etDescripcion.text.toString().trim()
-                val piezas = etPiezas.text.toString().toIntOrNull() ?: 0
+                val nombre      = etNombre      .text.toString().trim()
+                val descripcion = etDescripcion .text.toString().trim()
+                val piezas      = etPiezas      .text.toString().toIntOrNull() ?: 0
 
                 if (alimento.id != null) {
                     val datosActualizados = mapOf(

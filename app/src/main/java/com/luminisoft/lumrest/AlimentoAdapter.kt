@@ -13,11 +13,11 @@ class AlimentoAdapter(private var alimentos: List<Alimento>, private val onEdita
     RecyclerView.Adapter<AlimentoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
-        val btnEditar: Button = view.findViewById(R.id.btnEditar)
-        val btnEliminar: Button = view.findViewById(R.id.btnEliminar)
+        val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val btnEditar: Button       = view.findViewById(R.id.btnEditar)
+        val btnEliminar: Button     = view.findViewById(R.id.btnEliminar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -26,11 +26,11 @@ class AlimentoAdapter(private var alimentos: List<Alimento>, private val onEdita
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val alimento = alimentos[position]
 
-        holder.tvNombre.text = alimento.nombre
+        val alimento = alimentos[position]
+        holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
-        holder.tvPiezas.text = "Piezas: ${alimento.piezas}"
+        holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
 
         holder.btnEditar.setOnClickListener { onEditar(alimento) }
 

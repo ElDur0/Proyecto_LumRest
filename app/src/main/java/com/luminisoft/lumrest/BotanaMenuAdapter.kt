@@ -15,10 +15,12 @@ class BotanaMenuAdapter(
 ) : RecyclerView.Adapter<BotanaMenuAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
-        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
-        val btnAgregar: Button = view.findViewById(R.id.btnAgregarAlimento)
+
+        val tvNombre        : TextView = view.findViewById(R.id.tvNombre)
+        val tvDescripcion   : TextView = view.findViewById(R.id.tvDescripcion)
+        val tvPiezas        : TextView = view.findViewById(R.id.tvPiezas)
+        val btnAgregar      : Button   = view.findViewById(R.id.btnAgregarAlimento)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -30,9 +32,9 @@ class BotanaMenuAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val botana = botanas[position]
 
-        holder.tvNombre.text = botana.nombre
+        holder.tvNombre.text      = botana.nombre
         holder.tvDescripcion.text = botana.descripcion
-        holder.tvPiezas.text = "Piezas: ${botana.piezas}"
+        holder.tvPiezas.text      = "Piezas: ${botana.piezas}"
 
         holder.btnAgregar.setOnClickListener {
             CarritoManager.agregarAlimento(botana.toAlimento())

@@ -14,17 +14,17 @@ import com.luminisoft.lumrest.data.CarritoManager
 
 class MenuBotanas : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BotanaMenuAdapter
-    private lateinit var ivCarrito: ImageView
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var adapter        : BotanaMenuAdapter
+    private lateinit var ivCarrito      : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_botanas)
 
-        recyclerView = findViewById(R.id.recyclerBotanasMenu)
-        ivCarrito = findViewById(R.id.ivCarrito)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView                = findViewById(R.id.recyclerBotanasMenu)
+        ivCarrito                   = findViewById(R.id.ivCarrito)
+        recyclerView.layoutManager  = LinearLayoutManager(this)
 
         Firebase.firestore.collection("botanas")
             .orderBy("nombre")
@@ -35,13 +35,17 @@ class MenuBotanas : AppCompatActivity() {
                 }
 
                 val lista = snapshot?.documents?.mapNotNull { doc ->
-                    val nombre = doc.getString("nombre") ?: return@mapNotNull null
+                    val nombre      = doc.getString("nombre") ?: return@mapNotNull null
                     val descripcion = doc.getString("descripcion") ?: ""
-                    val piezas = (doc.get("piezas") as? Long)?.toInt() ?: 0
-                    Botana(nombre = nombre, descripcion = descripcion, piezas = piezas)
+                    val piezas      = (doc.get("piezas") as? Long)?.toInt() ?: 0
+                    Botana(
+                        nombre      = nombre,
+                        descripcion = descripcion,
+                        piezas      = piezas
+                    )
                 } ?: emptyList()
 
-                adapter = BotanaMenuAdapter(lista)
+                adapter              = BotanaMenuAdapter(lista)
                 recyclerView.adapter = adapter
             }
 

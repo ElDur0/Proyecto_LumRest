@@ -13,16 +13,17 @@ import com.luminisoft.lumrest.data.Botana
 
 class BotanasActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: BotanaAdapter
-    private val db = Firebase.firestore
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var adapter        : BotanaAdapter
+
+    private val db                = Firebase.firestore
     private val botanasCollection = db.collection("botanas")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_botanas)
 
-        recyclerView = findViewById(R.id.recyclerBotanas)
+        recyclerView               = findViewById(R.id.recyclerBotanas)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val btnAgregar = findViewById<ImageView>(R.id.btnAgregarBotana)
@@ -41,44 +42,48 @@ class BotanasActivity : AppCompatActivity() {
             }
 
             val lista = snapshot?.documents?.mapNotNull { doc ->
-                val nombre = doc.getString("nombre") ?: return@mapNotNull null
+                val nombre      = doc.getString("nombre") ?: return@mapNotNull null
                 val descripcion = doc.getString("descripcion") ?: ""
-                val piezas = (doc.getLong("piezas") ?: 0).toInt()
-                Botana(id = doc.id, nombre = nombre, descripcion = descripcion, piezas = piezas)
+                val piezas      = (doc.getLong("piezas") ?: 0).toInt()
+                Botana( id = doc.id,
+                        nombre      = nombre,
+                        descripcion = descripcion,
+                        piezas      = piezas
+                )
             } ?: emptyList()
 
             adapter = BotanaAdapter(lista,
-                onEditar = { mostrarDialogoEditar(it) },
-                onEliminar = { eliminarBotana(it) }
+                onEditar    = { mostrarDialogoEditar(it) },
+                onEliminar  = { eliminarBotana(it)       }
             )
             recyclerView.adapter = adapter
         }
     }
 
     private fun mostrarDialogoAgregar() {
-        val vista = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_botana, null)
+        val vista   = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_botana, null)
         val dialogo = AlertDialog.Builder(this)
             .setTitle("Agregar Botana")
             .setView(vista)
             .create()
 
-        val etNombre = vista.findViewById<EditText>(R.id.etNombre)
+        val etNombre      = vista.findViewById<EditText>(R.id.etNombre)
         val etDescripcion = vista.findViewById<EditText>(R.id.etDescripcion)
-        val etPiezas = vista.findViewById<EditText>(R.id.etPiezas)
-        val btnGuardar = vista.findViewById<Button>(R.id.btnGuardarBotana)
+        val etPiezas      = vista.findViewById<EditText>(R.id.etPiezas)
+        val btnGuardar    = vista.findViewById<Button>(R.id.btnGuardarBotana)
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
+            val nombre      = etNombre     .text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
-            val piezas = etPiezas.text.toString().toIntOrNull() ?: 0
+            val piezas      = etPiezas     .text.toString().toIntOrNull() ?: 0
 
             if (nombre.isEmpty() || descripcion.isEmpty() || piezas <= 0) {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val nueva = hashMapOf(
-                    "nombre" to nombre,
-                    "descripcion" to descripcion,
-                    "piezas" to piezas
+                    "nombre"        to nombre,
+                    "descripcion"   to descripcion,
+                    "piezas"        to piezas
                 )
                 botanasCollection.add(nueva)
                     .addOnSuccessListener {
@@ -95,33 +100,33 @@ class BotanasActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogoEditar(botana: Botana) {
-        val vista = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_botana, null)
+        val vista   = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_botana, null)
         val dialogo = AlertDialog.Builder(this)
             .setTitle("Editar Botana")
             .setView(vista)
             .create()
 
-        val etNombre = vista.findViewById<EditText>(R.id.etNombre)
+        val etNombre      = vista.findViewById<EditText>(R.id.etNombre)
         val etDescripcion = vista.findViewById<EditText>(R.id.etDescripcion)
-        val etPiezas = vista.findViewById<EditText>(R.id.etPiezas)
-        val btnGuardar = vista.findViewById<Button>(R.id.btnGuardarBotana)
+        val etPiezas      = vista.findViewById<EditText>(R.id.etPiezas)
+        val btnGuardar    = vista.findViewById<Button>(R.id.btnGuardarBotana)
 
-        etNombre.setText(botana.nombre)
-        etDescripcion.setText(botana.descripcion)
-        etPiezas.setText(botana.piezas.toString())
+        etNombre        .setText(botana.nombre)
+        etDescripcion   .setText(botana.descripcion)
+        etPiezas        .setText(botana.piezas.toString())
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
+            val nombre      = etNombre     .text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
-            val piezas = etPiezas.text.toString().toIntOrNull() ?: 0
+            val piezas      = etPiezas     .text.toString().toIntOrNull() ?: 0
 
             if (nombre.isEmpty() || descripcion.isEmpty() || piezas <= 0) {
                 Toast.makeText(this, "Campos inválidos", Toast.LENGTH_SHORT).show()
             } else {
                 val actualizada = hashMapOf(
-                    "nombre" to nombre,
+                    "nombre"      to nombre,
                     "descripcion" to descripcion,
-                    "piezas" to piezas
+                    "piezas"      to piezas
                 )
                 botana.id?.let {
                     botanasCollection.document(it).set(actualizada)

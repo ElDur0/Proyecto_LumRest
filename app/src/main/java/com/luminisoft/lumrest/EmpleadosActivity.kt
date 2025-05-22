@@ -13,19 +13,19 @@ import com.luminisoft.lumrest.data.Empleado
 
 class EmpleadosActivity : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: EmpleadoAdapter
-    private val db = Firebase.firestore
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var adapter        : EmpleadoAdapter
+    private val db                  = Firebase.firestore
     private val empleadosCollection = db.collection("empleados")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_empleados)
 
-        recyclerView = findViewById(R.id.recyclerEmpleados)
+        recyclerView               = findViewById(R.id.recyclerEmpleados)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        val btnAgregar             = findViewById<ImageView>(R.id.btnAgregarEmpleado)
 
-        val btnAgregar = findViewById<ImageView>(R.id.btnAgregarEmpleado)
         btnAgregar.setOnClickListener {
             mostrarDialogoAgregarEmpleado()
         }
@@ -41,15 +41,19 @@ class EmpleadosActivity : AppCompatActivity() {
             }
 
             val lista = snapshot?.documents?.mapNotNull { doc ->
-                val nombre = doc.getString("nombre") ?: return@mapNotNull null
-                val puesto = doc.getString("puesto") ?: ""
+                val nombre  = doc.getString("nombre") ?: return@mapNotNull null
+                val puesto  = doc.getString("puesto") ?: ""
                 val horario = doc.getString("horario") ?: ""
-                Empleado(id = doc.id, nombre = nombre, puesto = puesto, horario = horario)
+                Empleado(   id     = doc.id,
+                            nombre = nombre,
+                            puesto = puesto,
+                            horario = horario
+                )
             } ?: emptyList()
 
             adapter = EmpleadoAdapter(lista,
-                onEditar = { mostrarDialogoEditarEmpleado(it) },
-                onEliminar = { eliminarEmpleado(it) }
+                onEditar    = { mostrarDialogoEditarEmpleado(it) },
+                onEliminar  = { eliminarEmpleado(it)             }
             )
 
             recyclerView.adapter = adapter
@@ -57,28 +61,28 @@ class EmpleadosActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogoAgregarEmpleado() {
-        val vista = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
+        val vista   = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
         val dialogo = AlertDialog.Builder(this)
             .setTitle("Agregar Empleado")
             .setView(vista)
             .create()
 
-        val etNombre = vista.findViewById<EditText>(R.id.etNombre)
-        val etPuesto = vista.findViewById<EditText>(R.id.etPuesto)
-        val etHorario = vista.findViewById<EditText>(R.id.etHorario)
-        val btnGuardar = vista.findViewById<Button>(R.id.btnGuardarEmpleado)
+        val etNombre    = vista.findViewById<EditText>(R.id.etNombre)
+        val etPuesto    = vista.findViewById<EditText>(R.id.etPuesto)
+        val etHorario   = vista.findViewById<EditText>(R.id.etHorario)
+        val btnGuardar  = vista.findViewById<Button>(R.id.btnGuardarEmpleado)
 
         btnGuardar.setOnClickListener {
-            val nombre = etNombre.text.toString().trim()
-            val puesto = etPuesto.text.toString().trim()
+            val nombre  = etNombre.text.toString().trim()
+            val puesto  = etPuesto.text.toString().trim()
             val horario = etHorario.text.toString().trim()
 
             if (nombre.isEmpty() || puesto.isEmpty() || horario.isEmpty()) {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val nuevoEmpleado = hashMapOf(
-                    "nombre" to nombre,
-                    "puesto" to puesto,
+                    "nombre"  to nombre,
+                    "puesto"  to puesto,
                     "horario" to horario
                 )
                 empleadosCollection.add(nuevoEmpleado)
@@ -96,32 +100,31 @@ class EmpleadosActivity : AppCompatActivity() {
     }
 
     private fun mostrarDialogoEditarEmpleado(empleado: Empleado) {
-        val vista = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
+        val vista   = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_empleado, null)
         val dialogo = AlertDialog.Builder(this)
             .setTitle("Editar Empleado")
             .setView(vista)
             .create()
 
-        val etNombre = vista.findViewById<EditText>(R.id.etNombre)
-        val etPuesto = vista.findViewById<EditText>(R.id.etPuesto)
-        val etHorario = vista.findViewById<EditText>(R.id.etHorario)
-        val btnGuardar = vista.findViewById<Button>(R.id.btnGuardarEmpleado)
+        val etNombre    = vista.findViewById<EditText>(R.id.etNombre)
+        val etPuesto    = vista.findViewById<EditText>(R.id.etPuesto)
+        val etHorario   = vista.findViewById<EditText>(R.id.etHorario)
+        val btnGuardar  = vista.findViewById<Button>(R.id.btnGuardarEmpleado)
 
-        etNombre.setText(empleado.nombre)
-        etPuesto.setText(empleado.puesto)
-        etHorario.setText(empleado.horario)
-
-        btnGuardar.setOnClickListener {
-            val nuevoNombre = etNombre.text.toString().trim()
-            val nuevoPuesto = etPuesto.text.toString().trim()
-            val nuevoHorario = etHorario.text.toString().trim()
+        etNombre    .setText(empleado.nombre)
+        etPuesto    .setText(empleado.puesto)
+        etHorario   .setText(empleado.horario)
+        btnGuardar  .setOnClickListener {
+            val nuevoNombre     = etNombre  .text.toString().trim()
+            val nuevoPuesto     = etPuesto  .text.toString().trim()
+            val nuevoHorario    = etHorario .text.toString().trim()
 
             if (nuevoNombre.isEmpty() || nuevoPuesto.isEmpty() || nuevoHorario.isEmpty()) {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val datosActualizados = hashMapOf(
-                    "nombre" to nuevoNombre,
-                    "puesto" to nuevoPuesto,
+                    "nombre"  to nuevoNombre,
+                    "puesto"  to nuevoPuesto,
                     "horario" to nuevoHorario
                 )
                 empleado.id?.let {

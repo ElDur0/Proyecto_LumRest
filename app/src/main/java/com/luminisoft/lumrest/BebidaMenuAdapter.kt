@@ -14,10 +14,10 @@ class BebidaMenuAdapter(private val bebidas: List<Bebida>) :
     RecyclerView.Adapter<BebidaMenuAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvMililitros: TextView = view.findViewById(R.id.tvMililitros)
-        val btnAgregar: Button = view.findViewById(R.id.btnAgregarBebida)
+        val tvMililitros: TextView  = view.findViewById(R.id.tvMililitros)
+        val btnAgregar: Button      = view.findViewById(R.id.btnAgregarBebida)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,10 +27,10 @@ class BebidaMenuAdapter(private val bebidas: List<Bebida>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val bebida = bebidas[position]
-        holder.tvNombre.text = bebida.nombre
+        val bebida                = bebidas[position]
+        holder.tvNombre.text      = bebida.nombre
         holder.tvDescripcion.text = bebida.descripcion
-        holder.tvMililitros.text = "Volumen: ${bebida.mililitros} ml"
+        holder.tvMililitros.text  = "Volumen: ${bebida.mililitros} ml"
 
         holder.btnAgregar.setOnClickListener {
             CarritoManager.agregarBebida(bebida)

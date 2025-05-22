@@ -21,7 +21,7 @@ class PrincipalChef : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal_chef)
 
-        recyclerView = findViewById(R.id.recyclerPedidos)
+        recyclerView               = findViewById(R.id.recyclerPedidos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         findViewById<ImageView>(R.id.btnAgregarPedido).setOnClickListener {
@@ -41,13 +41,18 @@ class PrincipalChef : AppCompatActivity() {
                     return@addSnapshotListener
                 }
 
-                val pedidos = snapshot?.documents?.mapNotNull { doc ->
-                    val mesa = doc.getString("mesa") ?: return@mapNotNull null
+                val pedidos         = snapshot?.documents?.mapNotNull { doc ->
+                    val mesa        = doc.getString("mesa") ?: return@mapNotNull null
                     val descripcion = doc.getString("descripcion") ?: ""
-                    val estado = doc.getString("estado") ?: "Pendiente"
-                    val id = doc.id
+                    val estado      = doc.getString("estado") ?: "Pendiente"
+                    val id          = doc.id
 
-                    Pedido(id = id, mesa = mesa, descripcion = descripcion, estado = estado)
+                    Pedido(
+                        id          = id,
+                        mesa        = mesa,
+                        descripcion = descripcion,
+                        estado      = estado
+                    )
                 } ?: emptyList()
 
                 adapter = PedidoAdapter(pedidos) { pedido, nuevoEstado ->
@@ -69,7 +74,8 @@ class PrincipalChef : AppCompatActivity() {
 
                 snapshot?.documentChanges?.forEach { change ->
                     if (change.type == DocumentChange.Type.ADDED) {
-                        val tipo = change.document.getString("tipo")
+
+                        val tipo    = change.document.getString("tipo")
                         val mensaje = change.document.getString("mensaje")
 
                         if (tipo == "llamar_mesero") {
@@ -99,27 +105,27 @@ class PrincipalChef : AppCompatActivity() {
 
     private fun mostrarDialogNuevoPedido() {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_agregar_pedido, null)
-        val dialog = AlertDialog.Builder(this)
+        val dialog     = AlertDialog.Builder(this)
             .setTitle("Nuevo Pedido")
             .setView(dialogView)
             .create()
 
-        val etMesa = dialogView.findViewById<EditText>(R.id.etMesa)
-        val etDescripcion = dialogView.findViewById<EditText>(R.id.etDescripcion)
-        val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardarPedido)
+        val etMesa          = dialogView.findViewById<EditText>(R.id.etMesa)
+        val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcion)
+        val btnGuardar      = dialogView.findViewById<Button>(R.id.btnGuardarPedido)
 
         btnGuardar.setOnClickListener {
-            val mesa = etMesa.text.toString().trim()
+            val mesa        = etMesa.text.toString().trim()
             val descripcion = etDescripcion.text.toString().trim()
 
             if (mesa.isEmpty() || descripcion.isEmpty()) {
                 Toast.makeText(this, "Llena todos los campos", Toast.LENGTH_SHORT).show()
             } else {
                 val nuevoPedido = hashMapOf(
-                    "mesa" to mesa,
+                    "mesa"        to mesa,
                     "descripcion" to descripcion,
-                    "estado" to "Pendiente",
-                    "timestamp" to com.google.firebase.firestore.FieldValue.serverTimestamp()
+                    "estado"      to "Pendiente",
+                    "timestamp"   to com.google.firebase.firestore.FieldValue.serverTimestamp()
                 )
 
                 Firebase.firestore.collection("pedidos")

@@ -14,16 +14,16 @@ import com.luminisoft.lumrest.data.CarritoManager
 
 class MenuBebidas : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var ivCarrito: ImageView
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var ivCarrito      : ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_bebidas)
 
-        recyclerView = findViewById(R.id.recyclerBebidasMenu)
+        recyclerView               = findViewById(R.id.recyclerBebidasMenu)
         recyclerView.layoutManager = LinearLayoutManager(this)
-        ivCarrito = findViewById(R.id.ivCarrito)
+        ivCarrito                  = findViewById(R.id.ivCarrito)
 
         Firebase.firestore.collection("bebidas")
             .orderBy("nombre")
@@ -33,10 +33,10 @@ class MenuBebidas : AppCompatActivity() {
                     return@addSnapshotListener
                 }
 
-                val lista = snapshot?.documents?.mapNotNull { doc ->
-                    val nombre = doc.getString("nombre") ?: return@mapNotNull null
+                val lista           = snapshot?.documents?.mapNotNull { doc ->
+                    val nombre      = doc.getString("nombre") ?: return@mapNotNull null
                     val descripcion = doc.getString("descripcion") ?: ""
-                    val ml = (doc.get("mililitros") as? Long)?.toInt() ?: 0
+                    val ml          = (doc.get("mililitros") as? Long)?.toInt() ?: 0
                     Bebida(doc.id, nombre, descripcion, ml)
                 } ?: emptyList()
 

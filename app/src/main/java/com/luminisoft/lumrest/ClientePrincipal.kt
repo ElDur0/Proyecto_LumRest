@@ -14,9 +14,9 @@ import com.journeyapps.barcodescanner.ScanOptions
 
 class ClientePrincipal : AppCompatActivity() {
 
-    private lateinit var btnNFC: Button
-    private lateinit var btnQR: Button
-    private lateinit var btnLlamarMesero: Button
+    private lateinit var btnNFC          : Button
+    private lateinit var btnQR           : Button
+    private lateinit var btnLlamarMesero : Button
 
     private val qrLauncher = registerForActivityResult(ScanContract()) { result ->
         if (result.contents != null) {
@@ -31,27 +31,25 @@ class ClientePrincipal : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cliente_principal)
 
-        btnNFC = findViewById(R.id.btnNFC)
-        btnQR = findViewById(R.id.btnQR)
+        btnNFC          = findViewById(R.id.btnNFC)
+        btnQR           = findViewById(R.id.btnQR)
         btnLlamarMesero = findViewById(R.id.btnLlamarMesero)
 
-        btnNFC.setOnClickListener {
-            startActivity(Intent(this, ClienteInicio::class.java))
-        }
+        btnNFC.setOnClickListener { startActivity(Intent(this, ClienteInicio::class.java)) }
 
         btnQR.setOnClickListener {
             val options = ScanOptions()
-            options.setPrompt("Escanea el código QR de tu mesa")
-            options.setBeepEnabled(true)
-            options.setOrientationLocked(true)
-            options.setCaptureActivity(CaptureActivity::class.java)
+            options   .setPrompt("Escanea el código QR de tu mesa")
+            options   .setBeepEnabled(true)
+            options   .setOrientationLocked(true)
+            options   .setCaptureActivity(CaptureActivity::class.java)
             qrLauncher.launch(options)
         }
 
         btnLlamarMesero.setOnClickListener {
             val notificacion = hashMapOf(
-                "tipo" to "llamar_mesero",
-                "mensaje" to "Un cliente ha solicitado un mesero",
+                "tipo"      to "llamar_mesero",
+                "mensaje"   to "Un cliente ha solicitado un mesero",
                 "timestamp" to FieldValue.serverTimestamp()
             )
 

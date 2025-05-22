@@ -15,9 +15,9 @@ import com.luminisoft.lumrest.data.CarritoManager
 
 class MenuAlimentos : AppCompatActivity() {
 
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: AlimentoMenuAdapter
-    private lateinit var ivCarrito: ImageView
+    private lateinit var recyclerView   : RecyclerView
+    private lateinit var adapter        : AlimentoMenuAdapter
+    private lateinit var ivCarrito      : ImageView
 
     private val alimentos = mutableListOf<Alimento>()
 
@@ -25,13 +25,12 @@ class MenuAlimentos : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu_alimentos)
 
-        recyclerView = findViewById(R.id.recyclerAlimentosMenu)
+        recyclerView               = findViewById(R.id.recyclerAlimentosMenu)
         recyclerView.layoutManager = LinearLayoutManager(this)
+        adapter                    = AlimentoMenuAdapter(alimentos)
+        recyclerView.adapter       = adapter
+        ivCarrito                  = findViewById(R.id.ivCarrito)
 
-        adapter = AlimentoMenuAdapter(alimentos)
-        recyclerView.adapter = adapter
-
-        ivCarrito = findViewById(R.id.ivCarrito)
         ivCarrito.setOnClickListener {
             if (CarritoManager.obtenerCarrito().isEmpty()) {
                 Toast.makeText(this, "El carrito está vacío", Toast.LENGTH_SHORT).show()
@@ -49,21 +48,26 @@ class MenuAlimentos : AppCompatActivity() {
             .get()
             .addOnSuccessListener { snapshot ->
                 if (snapshot != null && !snapshot.isEmpty) {
+
                     alimentos.clear()
+
                     for (document in snapshot.documents) {
+
                         val alimento = document.toObject(Alimento::class.java)
                         alimento?.id = document.id
+
                         if (alimento != null) {
                             alimentos.add(alimento)
                         } else {
                             Log.w("MenuAlimentos", "Documento inválido: ${document.id}")
                         }
                     }
-                    adapter.notifyDataSetChanged()
-                    Log.d("MenuAlimentos", "Alimentos cargados: ${alimentos.size}")
+                    adapter .notifyDataSetChanged()
+                    Log     .d("MenuAlimentos", "Alimentos cargados: ${alimentos.size}")
+
                 } else {
-                    Log.w("MenuAlimentos", "No se encontraron alimentos")
-                    Toast.makeText(this, "No hay alimentos en la base de datos", Toast.LENGTH_SHORT).show()
+                    Log   .w("MenuAlimentos", "No se encontraron alimentos")
+                    Toast .makeText(this, "No hay alimentos en la base de datos", Toast.LENGTH_SHORT).show()
                 }
             }
             .addOnFailureListener { e ->

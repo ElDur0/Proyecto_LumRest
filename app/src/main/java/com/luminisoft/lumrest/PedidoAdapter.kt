@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luminisoft.lumrest.data.Pedido
 
 class PedidoAdapter(
-    private val pedidos: List<Pedido>,
-    private val onEstadoCambiado: (Pedido, String) -> Unit
+    private val pedidos          : List<Pedido>,
+    private val onEstadoCambiado : (Pedido, String) -> Unit
 ) : RecyclerView.Adapter<PedidoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvMesa: TextView = view.findViewById(R.id.tvMesa)
-        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvEstado: TextView = view.findViewById(R.id.tvEstado)
-        val btnPreparacion: Button = view.findViewById(R.id.btnPreparacion)
-        val btnListo: Button = view.findViewById(R.id.btnListo)
+        val tvMesa          : TextView = view.findViewById(R.id.tvMesa)
+        val tvDescripcion   : TextView = view.findViewById(R.id.tvDescripcion)
+        val tvEstado        : TextView = view.findViewById(R.id.tvEstado)
+        val btnPreparacion  : Button   = view.findViewById(R.id.btnPreparacion)
+        val btnListo        : Button   = view.findViewById(R.id.btnListo)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,11 +28,11 @@ class PedidoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val pedido = pedidos[position]
 
-        holder.tvMesa.text = "Mesa: ${pedido.mesa}"
-        holder.tvDescripcion.text = pedido.descripcion
-        holder.tvEstado.text = "Estado: ${pedido.estado}"
+        val pedido                  = pedidos[position]
+        holder.tvMesa.text          = "Mesa: ${pedido.mesa}"
+        holder.tvDescripcion.text   = pedido.descripcion
+        holder.tvEstado.text        = "Estado: ${pedido.estado}"
 
         holder.btnPreparacion.setOnClickListener {
             onEstadoCambiado(pedido, "En preparación")

@@ -15,10 +15,10 @@ class AlimentoCarritoAdapter(
 ) : RecyclerView.Adapter<AlimentoCarritoAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
+        val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val tvPiezas: TextView = view.findViewById(R.id.tvPiezas)
-        val btnEliminar: ImageView = view.findViewById(R.id.btnEliminarAlimento)
+        val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val btnEliminar: ImageView  = view.findViewById(R.id.btnEliminarAlimento)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,10 +28,10 @@ class AlimentoCarritoAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val alimento = alimentos[position]
-        holder.tvNombre.text = alimento.nombre
+        val alimento              = alimentos[position]
+        holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
-        holder.tvPiezas.text = "Piezas: ${alimento.piezas}"
+        holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
 
         holder.btnEliminar.setOnClickListener {
             CarritoManager.eliminarAlimento(alimento)

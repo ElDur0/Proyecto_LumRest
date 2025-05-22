@@ -9,16 +9,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.luminisoft.lumrest.data.Mesa
 
 class MesaAdapter(
-    private val mesas: List<Mesa>,
-    private val onEditar: (Mesa) -> Unit,
-    private val onEliminar: (Mesa) -> Unit
+    private val mesas       : List<Mesa>,
+    private val onEditar    : (Mesa) -> Unit,
+    private val onEliminar  : (Mesa) -> Unit
 ) : RecyclerView.Adapter<MesaAdapter.ViewHolder>() {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvNombre: TextView = view.findViewById(R.id.tvNombre)
-        val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
-        val btnEditar: Button = view.findViewById(R.id.btnEditar)
-        val btnEliminar: Button = view.findViewById(R.id.btnEliminar)
+        val tvNombre        : TextView = view.findViewById(R.id.tvNombre)
+        val tvDescripcion   : TextView = view.findViewById(R.id.tvDescripcion)
+        val btnEditar       : Button   = view.findViewById(R.id.btnEditar)
+        val btnEliminar     : Button   = view.findViewById(R.id.btnEliminar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,12 +28,12 @@ class MesaAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val mesa = mesas[position]
-        holder.tvNombre.text = mesa.nombre
-        holder.tvDescripcion.text = mesa.descripcion
+        val mesa                    = mesas[position]
+        holder.tvNombre.text        = mesa.nombre
+        holder.tvDescripcion.text   = mesa.descripcion
 
-        holder.btnEditar.setOnClickListener { onEditar(mesa) }
-        holder.btnEliminar.setOnClickListener { onEliminar(mesa) }
+        holder.btnEditar    .setOnClickListener { onEditar(mesa)   }
+        holder.btnEliminar  .setOnClickListener { onEliminar(mesa) }
     }
 
     override fun getItemCount(): Int = mesas.size
