@@ -20,6 +20,9 @@
         android:theme="@style/Theme.Lumrest"
         tools:targetApi="31">
         <activity
+            android:name=".MenuBebidas"
+            android:exported="false" />
+        <activity
             android:name=".MenuBotanas"
             android:exported="false" />
         <activity

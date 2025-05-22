@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerBebidasMenu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ivCarrito"
+        android:layout_marginBottom="72dp" />
+
+    <ImageView
+        android:id="@+id/ivCarrito"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_cart"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="12dp"
+        android:contentDescription="Ver Carrito"
+        android:elevation="8dp" />
+</RelativeLayout>
