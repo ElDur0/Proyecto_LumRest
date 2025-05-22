@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.firestore.DocumentChange
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.luminisoft.lumrest.data.Pedido
@@ -23,18 +24,16 @@ class PrincipalChef : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerPedidos)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val btnAgregarPedido = findViewById<ImageView>(R.id.btnAgregarPedido)
-        btnAgregarPedido.setOnClickListener {
+        findViewById<ImageView>(R.id.btnAgregarPedido).setOnClickListener {
             mostrarDialogNuevoPedido()
         }
 
         cargarPedidosDesdeFirestore()
+        escucharNotificaciones()
     }
 
     private fun cargarPedidosDesdeFirestore() {
-        val db = Firebase.firestore
-
-        db.collection("pedidos")
+        Firebase.firestore.collection("pedidos")
             .orderBy("timestamp")
             .addSnapshotListener { snapshot, error ->
                 if (error != null) {
@@ -42,21 +41,46 @@ class PrincipalChef : AppCompatActivity() {
                     return@addSnapshotListener
                 }
 
-                if (snapshot != null && !snapshot.isEmpty) {
-                    val listaPedidos = snapshot.documents.mapNotNull { doc ->
-                        val mesa = doc.getString("mesa") ?: return@mapNotNull null
-                        val descripcion = doc.getString("descripcion") ?: ""
-                        val estado = doc.getString("estado") ?: "Pendiente"
-                        val id = doc.id
+                val pedidos = snapshot?.documents?.mapNotNull { doc ->
+                    val mesa = doc.getString("mesa") ?: return@mapNotNull null
+                    val descripcion = doc.getString("descripcion") ?: ""
+                    val estado = doc.getString("estado") ?: "Pendiente"
+                    val id = doc.id
 
-                        Pedido(id = id, mesa = mesa, descripcion = descripcion, estado = estado)
+                    Pedido(id = id, mesa = mesa, descripcion = descripcion, estado = estado)
+                } ?: emptyList()
+
+                adapter = PedidoAdapter(pedidos) { pedido, nuevoEstado ->
+                    actualizarEstadoPedido(pedido.id!!, nuevoEstado)
+                }
+
+                recyclerView.adapter = adapter
+            }
+    }
+
+    private fun escucharNotificaciones() {
+        Firebase.firestore.collection("notificaciones")
+            .orderBy("timestamp")
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    Toast.makeText(this, "Error al escuchar notificaciones", Toast.LENGTH_SHORT).show()
+                    return@addSnapshotListener
+                }
+
+                snapshot?.documentChanges?.forEach { change ->
+                    if (change.type == DocumentChange.Type.ADDED) {
+                        val tipo = change.document.getString("tipo")
+                        val mensaje = change.document.getString("mensaje")
+
+                        if (tipo == "llamar_mesero") {
+                            Toast.makeText(this, mensaje ?: "Un cliente solicitó un mesero", Toast.LENGTH_LONG).show()
+
+                            // Eliminar la notificación después de mostrarla
+                            /*Firebase.firestore.collection("notificaciones")
+                                .document(change.document.id)
+                                .delete()*/
+                        }
                     }
-
-                    adapter = PedidoAdapter(listaPedidos) { pedido, nuevoEstado ->
-                        actualizarEstadoPedido(pedido.id!!, nuevoEstado)
-                    }
-
-                    recyclerView.adapter = adapter
                 }
             }
     }
