@@ -18,6 +18,7 @@ class AlimentoCarritoAdapter(
         val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
         val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val tvPrecio: TextView      = view.findViewById(R.id.tvPrecio)
         val btnEliminar: ImageView  = view.findViewById(R.id.btnEliminarAlimento)
     }
 
@@ -32,6 +33,7 @@ class AlimentoCarritoAdapter(
         holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
         holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
+        holder.tvPrecio.text      = "Precio: $ ${alimento.precio}"
 
         holder.btnEliminar.setOnClickListener {
             CarritoManager.eliminarAlimento(alimento)

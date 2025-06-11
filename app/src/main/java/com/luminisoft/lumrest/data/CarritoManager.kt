@@ -30,4 +30,7 @@ object CarritoManager {
     fun obtenerCarrito(): List<Alimento> {
         return carrito.toList()
     }
+    fun calcularTotal(): Double {
+        return carrito.sumOf { it.precio }
+    }
 }

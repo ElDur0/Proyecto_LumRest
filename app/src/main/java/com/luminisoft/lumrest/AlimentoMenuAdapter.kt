@@ -18,6 +18,7 @@ class AlimentoMenuAdapter(
         val tvNombre: TextView      = view.findViewById(R.id.tvNombre)
         val tvDescripcion: TextView = view.findViewById(R.id.tvDescripcion)
         val tvPiezas: TextView      = view.findViewById(R.id.tvPiezas)
+        val tvPrecio: TextView      = view.findViewById(R.id.tvPrecio)
         val btnAgregar: Button      = view.findViewById(R.id.btnAgregarAlimento)
     }
 
@@ -33,6 +34,7 @@ class AlimentoMenuAdapter(
         holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
         holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
+        holder.tvPrecio.text      = "Precio: $ ${alimento.precio}"
 
         holder.btnAgregar.setOnClickListener {
             CarritoManager.agregarAlimento(alimento)

@@ -24,4 +24,17 @@
         android:hint="Número de piezas"
         android:inputType="number"
         android:layout_marginTop="12dp" />
+    <EditText
+        android:id="@+id/editTextPrecio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Precio"
+        android:inputType="numberDecimal"/>
+    <EditText
+        android:id="@+id/editTextExistencias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Existencias"
+        android:inputType="number"
+        />
 </LinearLayout>

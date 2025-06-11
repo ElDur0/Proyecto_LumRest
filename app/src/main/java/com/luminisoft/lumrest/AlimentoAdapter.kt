@@ -27,10 +27,11 @@ class AlimentoAdapter(private var alimentos: List<Alimento>, private val onEdita
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-        val alimento = alimentos[position]
+        val alimento = alimentos[position]  
         holder.tvNombre.text      = alimento.nombre
         holder.tvDescripcion.text = alimento.descripcion
         holder.tvPiezas.text      = "Piezas: ${alimento.piezas}"
+        //aqui va el holder
 
         holder.btnEditar.setOnClickListener { onEditar(alimento) }
 

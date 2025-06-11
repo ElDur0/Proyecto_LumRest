@@ -24,7 +24,14 @@
         android:id="@+id/tvPiezas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Piezas" />
+        android:text="Piezas"
+        />
+    <TextView
+        android:id="@+id/tvPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Precio"
+        />
 
     <Button
         android:id="@+id/btnAgregarAlimento"

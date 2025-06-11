@@ -62,6 +62,8 @@ class Alimentos : AppCompatActivity() {
         val etNombre        = dialogView.findViewById<EditText>(R.id.etNombre)
         val etDescripcion   = dialogView.findViewById<EditText>(R.id.etDescripcion)
         val etPiezas        = dialogView.findViewById<EditText>(R.id.etPiezas)
+        val etprecio          = dialogView.findViewById<EditText>(R.id.editTextPrecio)
+        //val existencias     = dialogView.findViewById<EditText>(R.id.editTextExistencias)
 
         AlertDialog.Builder(this)
             .setTitle("Agregar alimento")
@@ -70,12 +72,14 @@ class Alimentos : AppCompatActivity() {
                 val nombre      = etNombre     .text.toString().trim()
                 val descripcion = etDescripcion.text.toString().trim()
                 val piezas      = etPiezas     .text.toString().toIntOrNull() ?: 0
+                val precio      = etprecio     .text.toString().toDoubleOrNull() ?: 0.0
 
                 if (nombre.isNotEmpty()) {
                     val nuevoAlimento = hashMapOf(
-                        "nombre" to nombre,
+                        "nombre"      to nombre,
                         "descripcion" to descripcion,
-                        "piezas" to piezas
+                        "piezas"      to piezas,
+                        "precio"      to precio
                     )
                     db.collection("alimentos").add(nuevoAlimento)
                         .addOnSuccessListener {

@@ -15,11 +15,14 @@ class CarritoActivity : AppCompatActivity() {
     private lateinit var recyclerView    : RecyclerView
     private lateinit var adapter         : AlimentoCarritoAdapter
     private lateinit var btnEnviarPedido : Button
+    private lateinit var tvTotal         : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_carrito)
 
+        tvTotal                    = findViewById(R.id.tvTotal)
+        actualizarTotal()
         recyclerView               = findViewById(R.id.recyclerCarrito)
         btnEnviarPedido            = findViewById(R.id.btnConfirmarPedido)
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -32,6 +35,10 @@ class CarritoActivity : AppCompatActivity() {
         btnEnviarPedido.setOnClickListener {
             enviarPedidoAFirebase()
         }
+    }
+    private fun actualizarTotal(){
+        val total = CarritoManager.calcularTotal()
+        tvTotal.text = "Total: $${"%.2f".format(total)}"
     }
 
     private fun actualizarVista() {
